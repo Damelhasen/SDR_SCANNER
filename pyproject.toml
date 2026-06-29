@@ -9,7 +9,7 @@ description = "SDR Scanner utilities and tools"
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
-authors = [ { name = "Your Name", email = "you@example.com" } ]
+authors = [ { name = "Johan Sheby", email = "Jotheexplorer123@gmail.com" } ]
 dependencies = [
   "numpy>=1.24",
   "matplotlib>=3.0",
@@ -25,6 +25,9 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 keywords = ["sdr", "rtl-sdr", "radio", "scanner", "spectrum"]
+
+[project.scripts]
+sdr-scanner = "sdr_scanner.core:main"
 
 [tool.setuptools]
 packages = ["sdr_scanner"]

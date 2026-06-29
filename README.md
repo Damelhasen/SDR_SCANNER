@@ -26,6 +26,10 @@ Airspy and Noolec Support : Maybe :man-shrugging:
 # Installation
 1. Ensure Proper Drivers are installed (refer [here](https://www.rtl-sdr.com/rtl-sdr-quick-start-guide/))
 
+```
+pip install pip install sdr-scanner==0.5.0
+sdr-scanner
+```
 # AI Use 
 
 AI Has been used in this project to : 
