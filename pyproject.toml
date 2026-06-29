@@ -10,10 +10,22 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 authors = [ { name = "Your Name", email = "you@example.com" } ]
-dependencies = []
+dependencies = [
+  "numpy>=1.24",
+  "matplotlib>=3.0",
+  "pyrtlsdr>=0.2.9",
+]
 classifiers = [
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
 ]
-urls = { "Repository" = "" }
+keywords = ["sdr", "rtl-sdr", "radio", "scanner", "spectrum"]
+
+[tool.setuptools]
+packages = ["sdr_scanner"]
+include-package-data = true

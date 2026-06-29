@@ -11,6 +11,7 @@ dist/
 # Virtual environments
 venv/
 env/
+sdr_env/
 
 # JSON data files generated or committed by mistake
 sdr_scanner/*.json
