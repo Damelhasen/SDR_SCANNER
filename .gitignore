@@ -12,5 +12,8 @@ dist/
 venv/
 env/
 
+# JSON data files generated or committed by mistake
+sdr_scanner/*.json
+
 # Pytest cache
 .pytest_cache/
