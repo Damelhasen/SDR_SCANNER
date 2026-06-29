@@ -152,26 +152,32 @@ def band_scan():
     input_band= input("Press Enter to start Band Scan (1.FM, 2.AM, 3.Aviation 4.Maritime) : ")
     
     if input_band == "1" :
+        print("Starting FM Band Scan from 88.0 MHz to 108.0 MHz")
         scan_result = scanner(sdr_device, 88.0, 108.0, 0.2, 0.5, True)
         write(f"sdr_scanner/fm_scan_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json", json.dumps(scan_result.full_range, indent=2))
         print("FM Band Scan Complete ")
     elif input_band == "2" :
+        print("Starting AM Band Scan from 530.0 KHz to 1700.0 KHz")
         scan_result = scanner(sdr_device, 530.0, 1700.0, 1.0, 0.5, True)
         write(f"sdr_scanner/am_scan_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json", json.dumps(scan_result.full_range, indent=2))
         print("AM Band Scan Complete ")
     
     elif input_band == "3" :
+        print("Starting Aviation Band Scan from 118.0 MHz to 137.0 MHz")
         scan_result = scanner(sdr_device, 118.0, 137.0, 0.2, 0.5, True)
         write(f"sdr_scanner/aviation_scan_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json", json.dumps(scan_result.full_range, indent=2))
         print("Aviation Band Scan Complete ")
 
     elif input_band == "4" :
+        print("Starting Maritime Band Scan from 156.0 MHz to 174.0 MHz")
         scan_result = scanner(sdr_device, 156.0, 174.0, 0.2, 0.5, True)
         write(f"sdr_scanner/maritime_scan_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json", json.dumps(scan_result.full_range, indent=2))
         print("Maritime Band Scan Complete ")
         
 ##################
 def main():
+    global sdr_device
+
     SDR_SELECTION = input("Select SDR Device (1 for RTL-SDR, 2 for Airspy): ")
     if SDR_SELECTION == '1':
         sdr_device = sdr()
