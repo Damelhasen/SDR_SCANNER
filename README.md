@@ -1,37 +1,37 @@
-# SDR Scanner
+# **SDRScan**
+**by Johan Sheby**
 
-Lightweight SDR scanning utilities and helpers for RTL-SDR and compatible devices.
+---
+SDRSCan is a simple python program that lets you automatically scan through large radio spectrums and bands using an Software Defined Radio .
 
-## Installation
 
-```bash
-pip install .
-```
 
-## Usage
+# Features
+SDRScan features two modes of scanning , custom where you are able to input the : 
+* Start frequency
+* End frequency
+* Step Frequency
+* Step Length (seconds)
 
-```python
-from sdr_scanner import write
+and band mode where you are able to select pre programed frquency ranges : 
+* FM
+* AM
+* Aviation
+* Maritime
 
-# Example: write scan data to a JSON file
-write("scan.json", "{\"100.0\": -10.5}")
-```
+# Hardware Support
+This program currently only supports RTL-SDRS (Tested with the [ RTL-SDR V4](https://www.rtl-sdr.com/rtl-sdr-blog-v4-end-of-line/))
+Airspy and Noolec Support : Maybe :man-shrugging: 
 
-## Packaging
+# Installation
+1. Ensure Proper Drivers are installed (refer [here](https://www.rtl-sdr.com/rtl-sdr-quick-start-guide/))
 
-This project is configured for PyPI upload using `pyproject.toml` and `setuptools`.
+# AI Use 
 
-## Files included for PyPI
+AI Has been used in this project to : 
+* Set up folder structure for PyPi
+* Autofill
+* Repetive copy pasting 
+* Running Tests 
+* Troupleshooting drivers 
 
-- `pyproject.toml`
-- `README.md`
-- `LICENSE`
-- `sdr_scanner/`
-
-## Requirements
-
-The package depends on:
-
-- `numpy`
-- `matplotlib`
-- `pyrtlsdr`
