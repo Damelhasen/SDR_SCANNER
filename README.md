@@ -28,6 +28,7 @@ Airspy and Noolec Support : Maybe :man-shrugging:
 
 ```
 pip install pip install sdr-scanner==0.5.0
+##PLEASE ENSURE YOUR RTL_SDR IS PLUGGED IN BEFORE RUNNING NEXT COMMAND
 sdr-scanner
 ```
 # AI Use 
