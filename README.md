@@ -27,7 +27,7 @@ Airspy and Noolec Support : Maybe :man-shrugging:
 1. Ensure Proper Drivers are installed (refer [here](https://www.rtl-sdr.com/rtl-sdr-quick-start-guide/))
 
 ```
- pip install sdr-scanner==0.5.0
+pip install sdr-scanner
 ##PLEASE ENSURE YOUR RTL_SDR IS PLUGGED IN BEFORE RUNNING NEXT COMMAND
 sdr-scanner
 ```
@@ -38,5 +38,5 @@ AI Has been used in this project to :
 * Autofill
 * Repetive copy pasting 
 * Running Tests 
-* Troupleshooting drivers 
+* Troubleshooting drivers 
 
