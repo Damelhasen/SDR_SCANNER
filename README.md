@@ -40,3 +40,5 @@ AI Has been used in this project to :
 * Running Tests 
 * Troubleshooting drivers 
 
+#Links
+https://pypi.org/project/sdr-scanner/1.0.1/
