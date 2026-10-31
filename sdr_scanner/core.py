@@ -29,6 +29,7 @@ def clear_terminal():
     
 
 def write(file_path:str , write_material) :
+    os.makedirs(os.path.dirname(file_path) or ".", exist_ok=True)
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(write_material)
 
@@ -71,6 +72,7 @@ def scanner(sdr_device, freq_start: float, freq_end: float, step: float , step_t
     decimal_places = len(str(step).split('.')[-1]) if '.' in str(step) else 0
     
     for freq in np.arange(freq_start, freq_end+step, step):
+        sdr_device.center_freq = freq * 1e6
         freq = round(freq, decimal_places + 1)
         sleep(step_time)
         samples = sdr_device.read_samples(256*1024)
@@ -177,17 +179,15 @@ def band_scan():
 ##################
 def main():
     global sdr_device
-
-    SDR_SELECTION = input("Select SDR Device (1 for RTL-SDR, 2 for Airspy): ")
-    if SDR_SELECTION == '1':
-        sdr_device = sdr()
+    if sdr is None or not hasattr(sdr, 'RtlSdr'):
+        print("Error: rtlsdr library is not installed or not available.")
+        return
+    sdr_device = sdr()
+    sdr_device.sample_rate = 2.4e6  # Set sample rate to 2.4 MHz
+    sdr_device.gain = 'auto'  # Set gain to auto
     
-    sdr_device.sample_rate = 2.4e6
-    sdr_device.center_freq = 98.6e6
-    sdr_device.gain = 'auto'
-    main_menu()
-    clear_terminal()
 
+    
 
 
 
