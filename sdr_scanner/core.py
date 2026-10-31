@@ -74,6 +74,7 @@ def scanner(sdr_device, freq_start: float, freq_end: float, step: float , step_t
     for freq in np.arange(freq_start, freq_end+step, step):
         sdr_device.center_freq = freq * 1e6
         freq = round(freq, decimal_places + 1)
+        print(f"Scanning Frequency: {freq} MHz")
         sleep(step_time)
         samples = sdr_device.read_samples(256*1024)
         power = np.mean(np.abs(samples) ** 2)
@@ -179,13 +180,59 @@ def band_scan():
 ##################
 def main():
     global sdr_device
-    if sdr is None or not hasattr(sdr, 'RtlSdr'):
+    if sdr is None:
         print("Error: rtlsdr library is not installed or not available.")
         return
+    print("""Text to ASCII Art Generator: Create ASCII Art from Text
+ASCII Art font:
+Cafe
+
+About
+
+Options
+
+Test all
+Input text:
+SDRScan
+More cool stuff
+Snake Game
+Keyboard Layout Analyzer
+Color Palette Generator
+Image Glitcher
+My YouTube Channel
+▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄     ▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄▄▄
+██▄▄▄▄▄▄▄▄▄██ ██▄▄▄▄▄▄▄▀▄   ██▄▄▄▄▄▄▄▄▄██  ██▄▄▄▄▄▄▄▄▄██ ██▄▄▄▄▄▄▄▄▄██ ██▄▄▄▄▄▄▄▄▄██ ██▄▄▄▄▄▄▄▄▄██
+█████▄▄▄█████ ████▀▀▀▀██▄▀▄ ████▀▀▀▀▀████  █████▄▄▄█████ ████▀▀▀▀▀████ ████▀▀▀▀▀████ ████▀▀▀▀▀████
+██████ ██████ █████▄▀██████ █████▄▀██████  ██████ ██████ █████▄▀██████ █████▄▀██████ █████▄▀██████
+██▒▓██ ▀▀▀▀▀▀ ██▒▓██ ██▒▓██ ██▓█ █ ██████  ██▒▓██ ▀▀▀▀▀▀ ██▓███ ▀▄▄▄▄█ ██▒▓██ ██▒▓██ ██▒▓██ ██▒▓██
+██░▒▄▄▄▄▄▄▄▄▄ ██░▒██ ██░▒██ ██▒▓ ▀▀▀█▓▓██  ██░▒▄▄▄▄▄▄▄▄▄ ██░▒██        ██░▒██ ██░▒██ ██░▒██ ██░▒██
+▀▀▀▀▀▀▀▄▓▒░▓█ █▓█░▓█ █▓█░▓█ ██░▒▒▒▒▒▒▒▒ █  ▀▀▀▀▀▀▀▄▓▒░▓█ █▓█░▓█        █▓█░▓█ █▓█░▓█ █▓█░▓█ █▓█░▓█
+▄▀▀▀▀█ █░▒░▒█ █▒▓█▒█ █▒▓█▒█ █▓█░▓▄▄▓▒▒█░   ▄▀▀▀▀█ █░▒░▒█ █▒▓█▒█ ▄▀▀▀▀█ █▒▓█▒█ █▒▓█▒█ █▒▓█▒█ █▒▓█▒█
+█░▒▓░█ █▓░▓░█ █░▒▓░█ █▒▒░░█ █▒▓█▒█▐▌▓░░█▀▄ █░▒▓░█ █▓░▓░█ █░▒▓░█ █ ▓▓ █ █░▒▓░▀▀▀░▒▓░█ █░▒▓░█ █░▒▓░█
+█ ▒▒ █ █ ▒▒ █ █ ░▒▒█▄▀▒░▀ ▀ █ ░▒ █ █░█▓▒ █ █ ▒▒ █ █ ▒▒ █ █ ░▒ ▀▀▀ ▒▒ █ █ ░▒▒▒▒▒▒▒▒ █ █ ▒▒ █ █ ▒▒ █
+█ ░░ ▀▀▀ ░░ █ █ ░░░░░░▀ ▄▀  █ ░░ █ ▐█ ░░ █ █ ░░ ▀▀▀ ░░ █ █ ░░░░░░░░░ █ █ ░░ ▄▄▄ ░░ █ █ ░░ █ █ ░░ █
+█▄▄▄▄▄▄▄▄▄▄▄▀ █▄▄▄▄▄▄▄▄▀    █▄▄▄▄▀  █▄▄▄▄▀ █▄▄▄▄▄▄▄▄▄▄▄▀ █▄▄▄▄▄▄▄▄▄▄▄▀ █▄▄▄▄▀ █▄▄▄▄▀ █▄▄▄▄▀ █▄▄▄▄▀
+
+""")
+    SDR_SELECTION = input("Select SDR Device (1 for RTL-SDR, 2 for Airspy): ")
+    if SDR_SELECTION != '1':
+        print("Only RTL-SDR is supported right now.")
+        return
+
     sdr_device = sdr()
-    sdr_device.sample_rate = 2.4e6  # Set sample rate to 2.4 MHz
-    sdr_device.gain = 'auto'  # Set gain to auto
-    
+    sdr_device.sample_rate = 2.4e6
+    sdr_device.center_freq = 98.6e6
+    sdr_device.gain = 'auto'
+
+    try:
+        main_menu()
+    finally:
+        sdr_device.close()
+
+
+if __name__ == "__main__":
+    main()
+
 
     
 
